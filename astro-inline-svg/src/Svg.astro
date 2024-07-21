@@ -1,0 +1,21 @@
+---
+import { parse } from "node-html-parser";
+import type { HTMLAttributes } from "astro/types";
+
+export interface Props extends HTMLAttributes<"svg"> {
+    raw: string;
+}
+
+const getAttributesAndContent = (raw: string) => {
+    const root = parse(raw);
+    const svg = root.querySelector("svg");
+    if (!svg) throw new Error("Not a SVG file!");
+    return { attributes: svg.attributes, content: svg.innerHTML };
+};
+
+const { raw, ...userAttrs } = Astro.props;
+const { attributes: origAttrs, content } = getAttributesAndContent(raw);
+const attrs = { ...origAttrs, ...userAttrs };
+---
+
+<svg {...attrs} set:html={content} />

@@ -1,0 +1,22 @@
+{
+  "name": "@cxa/astro-inline-svg",
+  "version": "0.1.0",
+  "description": "Inline SVG into Astro templates.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": ["src", "index.ts"],
+  "keywords": ["astro-component", "inline-svg", "svg"],
+  "dependencies": {
+    "node-html-parser": "^6.1.13"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "astro": "^4.12.2"
+  }
+}

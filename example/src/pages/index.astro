@@ -1,0 +1,82 @@
+---
+import Svg from "@cxa/astro-inline-svg";
+import { Code } from "astro:components";
+import sunRiseSVG from "lucide-static/icons/sunrise.svg?raw";
+import githubSVG from "lucide-static/icons/github.svg?raw";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href=`${import.meta.env.BASE_URL}/favicon.svg`
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Inline SVG</title>
+  </head>
+  <body>
+    <main>
+      <Svg raw={sunRiseSVG} class="sun-rise" stroke-width={1.5} />
+      <h1>Astro Inline SVG</h1>
+      <Code
+        lang="astro"
+        code={`
+---
+// pnpm i @cxa/astro-inline-svg
+import Svg from "@cxa/astro-inline-svg";
+import sunRiseSVG from "lucide-static/icons/sunrise.svg?raw";
+---
+
+<Svg raw={sunRiseSVG} class="sun-rise" stroke-width={1.5} />
+    `}
+      />
+      <a href="https://github.com/cxa/astro-inline-svg"
+        ><Svg raw={githubSVG} stroke-width={2} /></a
+      >
+    </main>
+  </body>
+</html>
+
+<style>
+  html {
+    background: #fff;
+    color: #000;
+  }
+  body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: env(safe-area-inste-top) env(safe-area-inste-right)
+      env(safe-area-inste-bottom) env(safe-area-inste-left);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+
+  main {
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  pre {
+    padding: 0 20px;
+  }
+
+  .sun-rise {
+    width: 120px;
+    height: 120px;
+  }
+</style>

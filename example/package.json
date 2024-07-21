@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "dist": "pnpm build && pnpm gh-pages -d dist"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.8.2",
+    "@cxa/astro-inline-svg": "workspace:astro-inline-svg",
+    "astro": "^4.12.2",
+    "lucide-static": "^0.412.0",
+    "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

@@ -1,0 +1,1 @@
+../../astro-inline-svg/README.md
