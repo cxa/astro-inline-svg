@@ -1,6 +1,6 @@
 {
   "name": "@cxa/astro-inline-svg",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Inline SVG into Astro templates.",
   "license": "MIT",
   "type": "module",
@@ -9,14 +9,18 @@
   },
   "files": ["src", "index.ts"],
   "keywords": ["astro-component", "inline-svg", "svg"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cxa/astro-inline-svg.git",
+    "directory": "astro-inline-svg"
+  },
+  "bugs": "https://github.com/cxa/astro-inline-svg/issues",
+  "homepage": "https://realazy.com/astro-inline-svg/",
   "dependencies": {
     "node-html-parser": "^6.1.13"
   },
   "peerDependencies": {
     "astro": "^4.0.0",
     "typescript": "^5.0.0"
-  },
-  "devDependencies": {
-    "astro": "^4.12.2"
   }
 }
