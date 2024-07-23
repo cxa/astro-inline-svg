@@ -2,7 +2,9 @@
 import Svg from "@cxa/astro-inline-svg";
 import { Code } from "astro:components";
 import sunRiseSVG from "lucide-static/icons/sunrise.svg?raw";
+import birdSVG from "lucide-static/icons/bird.svg?raw";
 import githubSVG from "lucide-static/icons/github.svg?raw";
+import type { symbol } from "astro/zod";
 ---
 
 <html lang="en">
@@ -23,11 +25,12 @@ import githubSVG from "lucide-static/icons/github.svg?raw";
   </head>
   <body>
     <main>
-      <Svg raw={sunRiseSVG} class="sun-rise" stroke-width={1.5} />
-      <h1>Astro Inline SVG</h1>
-      <Code
-        lang="astro"
-        code={`
+      <section>
+        <Svg raw={sunRiseSVG} class="sun-rise" stroke-width={1.5} />
+        <h1>Astro Inline SVG</h1>
+        <Code
+          lang="astro"
+          code={`
 ---
 // pnpm i @cxa/astro-inline-svg
 import Svg from "@cxa/astro-inline-svg";
@@ -36,47 +39,154 @@ import sunRiseSVG from "lucide-static/icons/sunrise.svg?raw";
 
 <Svg raw={sunRiseSVG} class="sun-rise" stroke-width={1.5} />
     `}
-      />
+        />
+      </section>
+
+      <section>
+        <h2>Use as symbol</h2>
+        <div>
+          <Svg raw={birdSVG} define:symbol="bird-1" />
+          {
+            Array.from({ length: 10 }).map(() => (
+              <Svg raw={birdSVG} use:symbol="bird-1" />
+            ))
+          }
+        </div>
+        <Code
+          lang="astro"
+          code={`
+<Svg raw={birdSVG} define:symbol="bird-1" />
+{
+  Array.from({ length: 10 }).map(() => (
+    <Svg raw={birdSVG} use:symbol="bird-1" />
+  ))
+}           
+`}
+        />
+      </section>
+
+      <section>
+        <h2>More control on symbol</h2>
+        <div>
+          <Svg
+            raw={birdSVG}
+            define:symbol={{
+              id: "bird-2",
+              symbolProps: {
+                "stroke-width": "3px",
+              },
+            }}
+          />
+          {
+            [
+              "#FF0000", // Bright Red
+              "#00FF00", // Lime Green
+              "#0000FF", // Blue
+              "#FFD700", // Gold (darker yellow)
+              "#FF00FF", // Magenta
+              "#00FFFF", // Cyan
+              "#FF8000", // Orange
+              "#8000FF", // Purple
+              "#00FF80", // Spring Green
+              "#FF0080", // Hot Pink
+            ].map((color) => (
+              <Svg
+                raw={birdSVG}
+                use:symbol={{
+                  id: "bird-2",
+                  useProps: { stroke: color },
+                }}
+              />
+            ))
+          }
+        </div>
+
+        <Code
+          lang="astro"
+          code={`
+<Svg
+  raw={birdSVG}
+  define:symbol={{
+    id: "bird-2",
+    symbolProps: {
+      "stroke-width": "3px",
+    },
+  }}
+/>
+{[
+  "#FF0000", // Bright Red
+  "#00FF00", // Lime Green
+  "#0000FF", // Blue
+  "#FFD700", // Gold (darker yellow)
+  "#FF00FF", // Magenta
+  "#00FFFF", // Cyan
+  "#FF8000", // Orange
+  "#8000FF", // Purple
+  "#00FF80", // Spring Green
+  "#FF0080", // Hot Pink
+].map((color) => (
+  <Svg
+    raw={birdSVG}
+    use:symbol={{
+      id: "bird-2",
+      useProps: { stroke: color },
+    }} />
+))
+`}
+        />
+      </section>
       <a href="https://github.com/cxa/astro-inline-svg">
         <Svg raw={githubSVG} stroke-width={2} />
       </a>
     </main>
   </body>
+
+  <style>
+    html {
+      background: #fff;
+      color: #000;
+    }
+
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: env(safe-area-inste-top) env(safe-area-inste-right)
+        env(safe-area-inste-bottom) env(safe-area-inste-left);
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+
+    main {
+      max-width: 800px;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    pre {
+      padding: 0 20px;
+    }
+
+    .sun-rise {
+      width: 120px;
+      height: 120px;
+    }
+  </style>
 </html>
-
-<style>
-  html {
-    background: #fff;
-    color: #000;
-  }
-  body {
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
-    padding: env(safe-area-inste-top) env(safe-area-inste-right)
-      env(safe-area-inste-bottom) env(safe-area-inste-left);
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-  }
-
-  main {
-    max-width: 800px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  pre {
-    padding: 0 20px;
-  }
-
-  .sun-rise {
-    width: 120px;
-    height: 120px;
-  }
-</style>

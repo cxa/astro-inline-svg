@@ -4,6 +4,19 @@ import type { HTMLAttributes } from "astro/types";
 
 export interface Props extends HTMLAttributes<"svg"> {
   raw: string;
+  "define:symbol"?:
+    | string // treat as id
+    | {
+        id: string;
+        symbolProps?: Omit<HTMLAttributes<"symbol">, "id">;
+        useProps?: Omit<HTMLAttributes<"use">, "href">;
+      };
+  "use:symbol"?:
+    | string // treat as id
+    | {
+        id: string;
+        useProps?: Omit<HTMLAttributes<"use">, "href">;
+      };
 }
 
 const getAttributesAndContent = (raw: string) => {
@@ -13,9 +26,34 @@ const getAttributesAndContent = (raw: string) => {
   return { attributes: svg.attributes, content: svg.innerHTML };
 };
 
-const { raw, ...userAttrs } = Astro.props;
+const {
+  raw,
+  "define:symbol": _symbolDef,
+  "use:symbol": _symbolUse,
+  ...userAttrs
+} = Astro.props;
+
+const symbolDef =
+  typeof _symbolDef === "string" ? { id: _symbolDef } : _symbolDef;
+const symbolUse =
+  typeof _symbolUse === "string" ? { id: _symbolUse } : _symbolUse;
+
 const { attributes: origAttrs, content } = getAttributesAndContent(raw);
+
 const attrs = { ...origAttrs, ...userAttrs };
 ---
 
-<svg {...attrs} set:html={content} />
+{
+  symbolDef ? (
+    <svg {...attrs}>
+      <symbol id={symbolDef.id} {...symbolDef.symbolProps} set:html={content} />
+      <use href={`#${symbolDef.id}`} {...symbolDef.useProps} />
+    </svg>
+  ) : symbolUse ? (
+    <svg {...attrs}>
+      <use href={`#${symbolUse.id}`} {...symbolUse.useProps} />
+    </svg>
+  ) : (
+    <svg {...attrs} set:html={content} />
+  )
+}
