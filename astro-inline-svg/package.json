@@ -7,18 +7,11 @@
   "exports": {
     ".": "./index.ts"
   },
-  "files": [
-    "src",
-    "index.ts"
-  ],
-  "keywords": [
-    "astro-component",
-    "inline-svg",
-    "svg"
-  ],
+  "files": ["src", "index.ts"],
+  "keywords": ["astro-component", "inline-svg", "svg"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cxa/astro-inline-svg.git",
+    "url": "git+https://github.com/cxa/astro-inline-svg.git",
     "directory": "astro-inline-svg"
   },
   "bugs": "https://github.com/cxa/astro-inline-svg/issues",
