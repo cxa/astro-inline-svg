@@ -33,6 +33,11 @@ const {
   ...userAttrs
 } = Astro.props;
 
+if (_symbolDef && _symbolUse)
+  throw new Error(
+    "`define:symbol` and `use:symbol` can't be used simultaneously.",
+  );
+
 const symbolDef =
   typeof _symbolDef === "string" ? { id: _symbolDef } : _symbolDef;
 const symbolUse =
