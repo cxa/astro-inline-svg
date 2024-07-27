@@ -1,17 +1,13 @@
 name: Releases
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Generate Changelog
+      - name: Generate Changelog ⛵
         id: changelog
         uses: TriPSs/conventional-changelog-action@v5
         with:
@@ -19,7 +15,7 @@ jobs:
           version-file: "./astro-inline-svg/package.json"
           output-file: "./astro-inline-svg/CHANGELOG.md"
 
-      - name: Create Release
+      - name: Create Release 🚀
         uses: actions/create-release@v1
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
         env:
