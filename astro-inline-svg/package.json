@@ -1,6 +1,6 @@
 {
   "name": "@cxa/astro-inline-svg",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Inline SVG into Astro templates.",
   "license": "MIT",
   "type": "module",

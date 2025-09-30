@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/cxa/astro-inline-svg/compare/v0.5.1...v0.6.0) (2025-09-30)
+
+
+### Features
+
+* update peer dep ([7fdf381](https://github.com/cxa/astro-inline-svg/commit/7fdf38117058b6e54d1a0b3b4b429ec869718117))
+
+
+
 ## [0.5.1](https://github.com/cxa/astro-inline-svg/compare/v0.5.0...v0.5.1) (2024-07-26)
 
 
