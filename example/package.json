@@ -11,9 +11,9 @@
     "dist": "pnpm build && pnpm gh-pages -d dist"
   },
   "dependencies": {
-    "@astrojs/check": "^0.8.2",
-    "@cxa/astro-inline-svg": "workspace:astro-inline-svg",
-    "astro": "^4.12.2",
+    "@astrojs/check": "^0.9.4",
+    "@cxa/astro-inline-svg": "workspace:*",
+    "astro": "^5.14.1",
     "lucide-static": "^0.412.0",
     "typescript": "^5.5.3"
   },
